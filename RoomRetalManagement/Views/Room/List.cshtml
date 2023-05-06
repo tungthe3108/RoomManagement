@@ -1,0 +1,89 @@
+﻿@model IEnumerable<RoomRentalManagementClassLibrary.Models.Room>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Danh sách phòng</h1>
+
+<div class="mt-3">
+<p>
+    <button class="btn btn-info" style="border-radius:15px"><a asp-action="Create" class="text-decoration-none" style="color:white">Tạo mới +</a></button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã phòng
+            </th>
+            <th>
+                Tên phòng
+            </th>
+            <th>
+                Tầng
+            </th>
+            <th>
+                Số người đang ở
+            </th>
+            <th>
+                Số người ở tối đa
+            </th>
+            <th>
+                Diện tích
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in ViewBag.rooms)
+            {
+        <tr>
+            <td>
+                @item.RoomId
+            </td>
+            <td>
+                @item.RoomName
+            </td>
+            <td>
+                @item.Floor
+            </td>
+            <td>
+                @item.NumOfLiving
+            </td>
+            <td>
+                @item.NumOfPerson
+            </td>
+            <td>
+                @item.Area
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.Status
+            </td>
+            <td>
+                     <a asp-action="Edit" asp-route-id="@item.RoomId">Cập nhật</a> |
+                     <a asp-action="Details" asp-route-id="@item.RoomId">Chi tiết</a> |
+                     <a asp-action="Delete" asp-route-id="@item.RoomId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    @{
+        if (ViewBag.rooms.Count == 0)
+        {
+            <h6 style="color:red">Không tìm bản ghi nào được tìm thấy</h6>
+        }
+    }
+</div>
+</div>

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<RoomRentalManagementClassLibrary.Models.Account>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Danh sách tài khoản</h1>
+
+<p>
+    <a asp-action="Create">Tạo mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã tài khoản
+            </th>
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Mật khẩu
+            </th>
+            <th>
+                Người dùng
+            </th>
+            <th>
+                Vai trò
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @{
+                        string pw = "";
+                        for (int i = 0; i < item.Password.Length; i++)
+                        {
+                            pw += "*";
+                        }
+                }
+                @pw
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                    @{
+                        string status = "";
+                        if (item.Status == true)
+                        {
+                            status = "Hoạt động";
+                        }
+                        else
+                        {
+                            status = "Tạm ngưng";
+                        }
+                    }
+                    @status
+            </td>
+            <td>
+                   <a asp-action="Edit" asp-route-id="@item.Id">Cập nhật</a> |
+                   <a asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

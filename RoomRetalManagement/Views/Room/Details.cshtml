@@ -1,0 +1,61 @@
+﻿@model RoomRentalManagementClassLibrary.Models.Room
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Chi tiết</h1>
+
+<div>
+    <h4>Phòng</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Mã phòng
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+        <dt class = "col-sm-2">
+            Tên phòng
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RoomName)
+        </dd>
+        <dt class = "col-sm-2">
+            Tầng
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Floor)
+        </dd>
+        <dt class = "col-sm-2">
+            Số người ở tối đa
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumOfPerson)
+        </dd>
+        <dt class = "col-sm-2">
+            Số người đang ở
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NumOfLiving)
+        </dd>
+        <dt class = "col-sm-2">
+           Diện tích
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+        <dt class = "col-sm-2">
+           Giá
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="List">Quay lại</a> |
+    <a asp-action="Edit" asp-route-id="@Model.RoomId">Cập nhật</a>
+</div>

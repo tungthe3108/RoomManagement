@@ -1,0 +1,70 @@
+﻿@model RoomRentalManagementClassLibrary.Models.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Cập nhật</h1>
+
+<h4>Khách hàng</h4>
+<hr />
+<div>
+    <div>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <input type="hidden" asp-for="CustomerId" value="@Model.CustomerId" />
+            <div class="row">
+                <div class="form-group col-lg-4">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-lg-4">
+                <label asp-for="RoomId" class="control-label">Phòng</label>
+                <select asp-for="RoomId" class="form-control" asp-items="@(new SelectList(ViewBag.Rooms, "Value", "Text"))">
+                        <option value=""></option>
+                </select>
+                <span asp-validation-for="RoomId" class="text-danger"></span>
+            </div>
+                <div class="form-group col-lg-4">
+                <label asp-for="Sex" class="control-label">Giới tính</label>
+                <select asp-for="Sex" class="form-control">
+                    <option value=""></option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+                <div class="form-group col-lg-4">
+                <label asp-for="Dob" class="control-label"></label>
+                <input asp-for="Dob" class="form-control" type="date" step="1" />
+                <span asp-validation-for="Dob" class="text-danger"></span>
+            </div>
+                <div class="form-group col-lg-4">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+                <div class="form-group col-lg-4">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+                <div class="form-group col-lg-4">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-group text-center mt-2">
+                <button class="btn btn-secondary" style="border-radius:15px"><a asp-action="List" class="text-decoration-none" style="color:white">Quay lại</a></button>
+                <input style="border-radius:15px" type="submit" value="Cập nhật" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

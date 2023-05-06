@@ -1,0 +1,90 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IEnumerable<RoomRentalManagementClassLibrary.Models.Customer>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="text-center">Danh sách khách hàng</h1>
+
+<div class="mt-2">
+<p>
+    <button class="btn btn-info" style="border-radius:15px"><a asp-action="Create" class="text-decoration-none" style="color:white">Tạo mới +</a></button>
+</p>
+   
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã khách hàng
+            </th>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Phòng
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.ListCust) {
+        <tr>
+            <td>
+                @item.CustomerId
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.RoomName
+            </td>
+            <td>
+                @item.Sex
+            </td>
+            <td>
+                @item.Dob
+            </td>
+            <td>
+                @item.Phone
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.CustomerId">Cập nhật</a> |
+                    <a asp-action="Details" asp-route-id="@item.CustomerId">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CustomerId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    @{
+        if (ViewBag.ListCust.Count == 0)
+        {
+            <h6 style="color:red">Không tìm bản ghi nào được tìm thấy</h6>
+        }
+    }
+    </div>
+
+</div>
